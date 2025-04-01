@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { saveDiary, loadDiary } from "@/utils/storage";
+import cn from "@/utils/cn";
 
 function Write() {
   const [title, setTitle] = useState("");
@@ -36,7 +37,15 @@ function Write() {
         onChange={(e) => setContent(e.target.value)}
         className="mt-4 p-2 border rounded resize-none"
       />
-      <button onClick={handleCreateDiary}>저장</button>
+      <button 
+        onClick={handleCreateDiary}
+        className={cn(
+          "p-2 bg-blue-400 m-4 rounded-lg text-white hover:bg-blue-500",
+          "transition duration-300 font-bold"
+        )}
+      >
+        저장
+      </button>
     </div>
   );
 }

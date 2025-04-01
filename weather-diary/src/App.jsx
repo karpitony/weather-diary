@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router';
-import GlobalStyle from "./styles/GlobalStyle";
+// import GlobalStyle from "./styles/GlobalStyle";
 
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <RouterProvider router={router} />
     </>
   );
