@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import DiaryCard from "../components/DiaryCard";
 
 const dummyData = [
@@ -18,21 +17,18 @@ const dummyData = [
 
 function Home() {
   return(
-    <div className="flex items-center justify-center w-full h-screen bg-gray-100">
-      <div className="flex flex-col items-center w-full max-w-3xl h-screen">
-        <Header />
-        <h1 className="text-2xl font-bold mt-4">📘 나의 날씨 일기</h1>
-        <div className="flex flex-col items-center mt-4 w-full">
-          {dummyData.map((entry, index) => (
-            <DiaryCard
-              key={index}
-              title={entry.title}
-              content={entry.content}
-              date={entry.date}
-              weather={entry.weather}
-            />
-          ))}
-        </div>
+    <div className="flex flex-col items-center w-full max-w-3xl h-screen">
+      <h1 className="text-2xl font-bold mt-4">📘 나의 날씨 일기</h1>
+      <div className="flex flex-col items-center mt-4 w-full">
+        {dummyData.map((diary, index) => (
+          <DiaryCard
+            key={index}
+            title={diary.title}
+            content={diary.content}
+            date={diary.date}
+            weather={diary.weather}
+          />
+        ))}
       </div>
     </div>
   );
