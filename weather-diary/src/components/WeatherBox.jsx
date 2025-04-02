@@ -25,8 +25,7 @@ function WeatherBox({ weather, loading, error }) {
   }
 
   const WeatherIcon =
-    weatherIconMap[weather.weatherCondition] || weatherIconMap['default'];
-
+    weatherIconMap[weather.weather] || weatherIconMap['default'];
   return (
     <section className="flex items-center justify-center mt-4 w-full bg-white shadow-md rounded-lg px-8 py-4">
       <WeatherIcon className="flex w-24 h-24" />

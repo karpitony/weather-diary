@@ -13,13 +13,11 @@ function useWeather() {
       const res = await fetch(url);
       const data = await res.json();
 
-      const weatherCondition = data.weather[0].main.toLowerCase();
-      const weather = data.weather[0].main;
+      const weather = data.weather[0].main.toLowerCase();
       const temperature = data.main.temp;
 
       setTimeout(() => {
         setWeather({
-          weatherCondition,
           weather,
           temperature,
         });
