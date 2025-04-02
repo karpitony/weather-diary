@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
 function useWeather() {
-  const [weather, setWeather] = useState("");
+  const [weather, setWeather] = useState({
+    weather: "",
+    temperature: null
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -29,7 +32,7 @@ function useWeather() {
     });
   }, []);
 
-  return { weather, loading, error };
+  return { weather, loading, error, setWeatherInfo: setWeather };
 }
 
 export default useWeather;
