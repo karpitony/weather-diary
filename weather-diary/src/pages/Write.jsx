@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import WeatherBox from "@/components/WeatherBox";
 import { saveDiary, loadDiary } from "@/utils/storage";
 import useWeather from "../hooks/useWeather";
-
 import cn from "@/utils/cn";
 
 function Write() {
@@ -11,7 +11,7 @@ function Write() {
 
   const navigate = useNavigate();
   let diaryList = loadDiary();
-  const { weather } = useWeather();
+  const { weather, loading, error } = useWeather();
 
   const handleCreateDiary = () => {
     if (!title || !content) {
@@ -23,21 +23,16 @@ function Write() {
       title,
       content,
       date: new Date().toISOString().split('T')[0],
-      weather: weather,
+      weather: weather.weather,
+      temperature: weather.temperature,
     }
     saveDiary([ diary, ...diaryList]);
     navigate('/');
   }
-
   return(
     <div className="flex flex-col h-screen w-full max-w-xl items-center">
       <h1 className="text-2xl font-bold mt-6">✍️ 일기 작성 페이지</h1>
-      <section className="flex flex-col items-center mt-4 w-full">
-        <div className="flex items-center justify-between w-full mt-4">
-          <p className="text-xl font-semibold">날씨: {weather}</p>
-          {/* <img src={icon} alt="weather icon" className="w-12 h-12" /> */}
-        </div>
-      </section>
+      <WeatherBox weather={weather} loading={loading} error={error} />
       <section className="flex flex-col items-center mt-4 w-full">
         <p className="text-xl mt-2 w-full font-semibold">제목</p>
         <input 

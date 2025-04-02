@@ -14,6 +14,7 @@ function Home() {
             content={diary.content}
             date={diary.date}
             weather={diary.weather}
+            temperature={diary.temperature}
           />
         ))}
       </div>

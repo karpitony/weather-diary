@@ -12,8 +12,19 @@ function useWeather() {
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
       const res = await fetch(url);
       const data = await res.json();
-      setWeather(data.weather[0].main + " / " + data.main.temp + "°C");
-      setLoading(false);
+
+      const weatherCondition = data.weather[0].main.toLowerCase();
+      const weather = data.weather[0].main;
+      const temperature = data.main.temp;
+
+      setTimeout(() => {
+        setWeather({
+          weatherCondition,
+          weather,
+          temperature,
+        });
+        setLoading(false);
+      }, 3000);
     }, (err) => {
       setError(err);
       setLoading(false);
