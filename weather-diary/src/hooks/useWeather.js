@@ -25,7 +25,7 @@ function useWeather() {
           temperature,
         });
         setLoading(false);
-      }, 3000);
+      }, 2000);
     }, (err) => {
       setError(err);
       setLoading(false);

@@ -1,6 +1,4 @@
 import { RouterProvider, createBrowserRouter } from 'react-router';
-// import GlobalStyle from "./styles/GlobalStyle";
-
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Write from "./pages/Write";

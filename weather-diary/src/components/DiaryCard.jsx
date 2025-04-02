@@ -1,13 +1,20 @@
 import { useNavigate } from "react-router";
 import { AiOutlineEdit } from "react-icons/ai";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaTrashAlt } from "react-icons/fa";
 import { weatherIconMap } from "./WeatherIcons";
 import cn from "@/utils/cn";
 
-function DiaryCard({ id, title, content, date, weather, temperature }) {
+function DiaryCard({
+  id,
+  title,
+  content, 
+  date,
+  weather,
+  temperature,
+  handleDeleteClick
+}) {
   const navigate = useNavigate();
-
-  const handleClick = () => {
+  const handleEditClick = () => {
     navigate(`/write`, {
       state: {
         id,
@@ -31,15 +38,26 @@ function DiaryCard({ id, title, content, date, weather, temperature }) {
           <FaCalendarAlt className="w-6 h-6" />
           <p className="text-lg">{date}</p>
         </div>
-          <button
-            onClick={handleClick}
-            className={cn(
-              "text-black rounded-lg flex flex-col items-center justify-center p-1",
-              "hover:bg-gray-300 hover:shadow-gray-400 rounded-lg ease-in-out transition-colors"
-            )}
-          >
-            <AiOutlineEdit className="w-8 h-8"/>
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => handleDeleteClick(id)}
+              className={cn(
+                "text-black rounded-lg flex flex-col items-center justify-center p-1",
+                "hover:bg-gray-300 hover:shadow-gray-400 rounded-lg ease-in-out transition-colors"
+              )}
+            >
+              <FaTrashAlt className="w-6 h-6"/>
+            </button>
+            <button
+              onClick={handleEditClick}
+              className={cn(
+                "text-black rounded-lg flex flex-col items-center justify-center p-1",
+                "hover:bg-gray-300 hover:shadow-gray-400 rounded-lg ease-in-out transition-colors"
+              )}
+            >
+              <AiOutlineEdit className="w-6 h-6"/>
+            </button>
+          </div>
         </div>
         <div className="flex items-center justify-between w-full">
           {/* 제목과 내용 표시 */}

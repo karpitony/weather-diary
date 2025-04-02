@@ -1,8 +1,17 @@
+import { useState } from "react";
 import DiaryCard from "../components/DiaryCard";
-import { loadDiary } from "../utils/storage";
+import { loadDiary, saveDiary } from "../utils/storage";
 
 function Home() {
-  const diaries = loadDiary();
+  const [diaries, setDiaries] = useState(loadDiary());
+  const handleDeleteClick = (id) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const newDairyList = diaries.filter((diary) => diary.id !== id);
+      saveDiary(newDairyList);
+      setDiaries(newDairyList);
+    }
+  };
+
   return(
     <div className="flex flex-col items-center w-full max-w-3xl h-screen">
       <h1 className="text-2xl font-bold my-6">📘 나의 날씨 일기</h1>
@@ -16,6 +25,7 @@ function Home() {
             date={diary.date}
             weather={diary.weather}
             temperature={diary.temperature}
+            handleDeleteClick={handleDeleteClick}
           />
         ))}
       </div>
